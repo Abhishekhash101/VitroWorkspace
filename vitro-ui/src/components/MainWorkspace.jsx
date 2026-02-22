@@ -5,9 +5,11 @@ import {
     Clock
 } from 'lucide-react';
 import ShareModal from './ShareModal';
+import ExportPdfModal from './ExportPdfModal';
 
 export default function MainWorkspace() {
     const [isShareModalOpen, setIsShareModalOpen] = React.useState(false);
+    const [isExportModalOpen, setIsExportModalOpen] = React.useState(false);
 
     return (
         <div className="h-screen flex flex-col font-sans w-full bg-[#E5D7CC] overflow-hidden">
@@ -93,10 +95,13 @@ export default function MainWorkspace() {
                             <Settings size={18} />
                             Settings
                         </a>
-                        <a href="#" className="flex items-center gap-3 text-[#3E2A2F] font-medium text-sm hover:text-white transition-colors">
+                        <button
+                            onClick={() => setIsExportModalOpen(true)}
+                            className="flex w-full items-center gap-3 text-[#3E2A2F] font-medium text-sm hover:text-white transition-colors text-left"
+                        >
                             <Download size={18} />
                             Export PDF
-                        </a>
+                        </button>
                         <a href="#" className="flex items-center gap-3 text-[#3E2A2F]/60 font-medium text-sm hover:text-[#3E2A2F]/80 transition-colors">
                             <Trash2 size={18} />
                             Trash
@@ -318,6 +323,12 @@ export default function MainWorkspace() {
             <ShareModal
                 isOpen={isShareModalOpen}
                 onClose={() => setIsShareModalOpen(false)}
+            />
+
+            {/* Export PDF Modal Overlay */}
+            <ExportPdfModal
+                isOpen={isExportModalOpen}
+                onClose={() => setIsExportModalOpen(false)}
             />
         </div>
     );
