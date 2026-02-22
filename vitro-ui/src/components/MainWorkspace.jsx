@@ -4,8 +4,11 @@ import {
     Settings, Download, Trash2, Cloud, Share, CheckCircle2, Save, Upload,
     Clock
 } from 'lucide-react';
+import ShareModal from './ShareModal';
 
 export default function MainWorkspace() {
+    const [isShareModalOpen, setIsShareModalOpen] = React.useState(false);
+
     return (
         <div className="h-screen flex flex-col font-sans w-full bg-[#E5D7CC] overflow-hidden">
 
@@ -125,7 +128,10 @@ export default function MainWorkspace() {
                                     <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Collab 3" className="w-8 h-8 rounded-full border-2 border-white -ml-3 relative z-0 object-cover bg-[#E5D7CC]" />
                                 </div>
 
-                                <button className="bg-[#B7684C] hover:bg-[#A45C49] text-white px-5 py-2 rounded-full font-bold text-sm shadow-sm transition-colors">
+                                <button
+                                    onClick={() => setIsShareModalOpen(true)}
+                                    className="bg-[#B7684C] hover:bg-[#A45C49] text-white px-5 py-2 rounded-full font-bold text-sm shadow-sm transition-colors"
+                                >
                                     Share
                                 </button>
                             </div>
@@ -307,6 +313,12 @@ export default function MainWorkspace() {
                 </div>
 
             </div>
+
+            {/* Share Modal Overlay */}
+            <ShareModal
+                isOpen={isShareModalOpen}
+                onClose={() => setIsShareModalOpen(false)}
+            />
         </div>
     );
 }
