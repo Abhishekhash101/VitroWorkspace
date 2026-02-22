@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DashboardLayout from './components/DashboardLayout';
 import SignUpPage from './components/SignUpPage';
 import AccountSettingsPage from './components/AccountSettingsPage';
+import MainWorkspace from './components/MainWorkspace';
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -22,6 +23,10 @@ function App() {
 
   if (currentPath === '/settings') {
     return <AccountSettingsPage />;
+  }
+
+  if (currentPath === '/workspace') {
+    return <MainWorkspace />;
   }
 
   // To easily preview the sign-up page for the user's request without writing a router:
@@ -57,6 +62,15 @@ function App() {
           className="bg-[#62414A]/90 text-white text-xs px-4 py-2 rounded-full shadow-lg hover:bg-[#62414A] transition-colors"
         >
           Settings UI ↗
+        </button>
+        <button
+          onClick={() => {
+            window.history.pushState({}, '', '/workspace');
+            setCurrentPath('/workspace');
+          }}
+          className="bg-[#B7684C] text-white text-xs px-4 py-2 rounded-full shadow-lg hover:bg-[#A45C49] transition-colors"
+        >
+          Workbench ↗
         </button>
       </div>
     </>
